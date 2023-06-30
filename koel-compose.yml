@@ -9,6 +9,7 @@ services:
       - DB_USERNAME=koel
       - DB_PASSWORD=koel
       - DB_DATABASE=koel
+      - FORCE_HTTPS=true
     volumes:
       - ./koel/music:/music
       - ./koel/covers:/var/www/html/public/img/covers
