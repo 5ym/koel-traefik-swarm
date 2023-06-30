@@ -30,7 +30,7 @@ services:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=koel
       - MYSQL_USER=koel
-      - MYSQL_USER=koel
+      - MYSQL_PASSWORD=koel
 
 networks:
   main_default:
