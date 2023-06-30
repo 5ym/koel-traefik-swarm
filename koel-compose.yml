@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  koel:
+    image: phanan/koel
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_USERNAME=root
+      - DB_PASSWORD=toor
+      - DB_DATABASE=koel
+    volumes:
+      - ./koel/music:/music
+      - ./koel/covers:/var/www/html/public/img/covers
+      - ./koel/search_index:/var/www/html/storage/search-indexes
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.koel.rule=Host(`k.doany.io`)"
+        - "traefik.http.routers.koel.tls.certresolver=myresolver"
+        - "traefik.http.services.koel.loadbalancer.server.port=80"
+  db:
+    image: mysql/mysql-server:5.7
+    volumes:
+      - ./koel/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_DATABASE=koel
+
+networks:
+  main_default:
+    external: true
+    name: main_default
