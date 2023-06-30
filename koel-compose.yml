@@ -13,6 +13,9 @@ services:
       - ./koel/music:/music
       - ./koel/covers:/var/www/html/public/img/covers
       - ./koel/search_index:/var/www/html/storage/search-indexes
+    networks:
+      - default
+      - main_default
     deploy:
       labels:
         - "traefik.enable=true"
